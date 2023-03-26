@@ -15,7 +15,7 @@ import { UtilityService } from 'src/app/shared/utility/utility.service';
 export class UserDialogComponent implements OnInit {
   formUser: FormGroup;
   checkPassword: boolean = true;
-  titleAction: string = 'Add';
+  titleAction: string = 'New';
   buttonAction: string = 'Save';
   listRole: Role[] = [];
 
@@ -71,6 +71,7 @@ export class UserDialogComponent implements OnInit {
     if (this.dataUser == null) {
       this.userService.Register(userData).subscribe({
         next: (data) => {
+          console.log(data);
           if (data.status) {
             this.utService.showAlert(data.message, 'success');
             this.dialog.close('true');

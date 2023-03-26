@@ -14,8 +14,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['fullName', 'email', 'roleName', 'isActive'];
-  data: User[] = [];
+  displayedColumns: string[] = [
+    'FullName',
+    'Email',
+    'RoleName',
+    'isActive',
+    'Actions',
+  ];
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -30,7 +35,7 @@ export class UserComponent implements OnInit, AfterViewInit {
       next: (data) => {
         console.log(data);
         if (data.status) {
-          this.dataSource = data.value;
+          this.dataSource = new MatTableDataSource(data.value);
         } else this.utService.showAlert(data.message, 'Oops!');
       },
       error: (e) => {},
@@ -42,13 +47,6 @@ export class UserComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
-
-  // applyFilter(event: Event) {
-  //   console.log(event);
-  //   const value = (event.target as HTMLInputElement).value;
-  //   this.dataListUser.filter = value.trim().toLocaleLowerCase();
-  //   console.log(this.dataListUser);
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -62,7 +60,9 @@ export class UserComponent implements OnInit, AfterViewInit {
       })
       .afterClosed()
       .subscribe((result) => {
-        if (result === 'true') this.GetTableUserList();
+        if (result === 'true') {
+          this.GetTableUserList();
+        }
       });
   }
 
