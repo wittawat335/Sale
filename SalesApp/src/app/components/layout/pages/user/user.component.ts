@@ -4,9 +4,9 @@ import { UserService } from './../../../../shared/services/user.service';
 import { User } from './../../../../shared/interfaces/user';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +22,7 @@ export class UserComponent implements OnInit, AfterViewInit {
     'Actions',
   ];
   dataSource = new MatTableDataSource<User>();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   constructor(
     private dialog: MatDialog,
@@ -36,7 +36,10 @@ export class UserComponent implements OnInit, AfterViewInit {
         console.log(data);
         if (data.status) {
           this.dataSource = new MatTableDataSource(data.value);
-        } else this.utService.showAlert(data.message, 'Oops!');
+          this.dataSource.paginator = this.paginator;
+        } else {
+          this.utService.showAlert(data.message, 'Oops!');
+        }
       },
       error: (e) => {},
     });
