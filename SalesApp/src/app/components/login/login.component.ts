@@ -1,9 +1,9 @@
-import { Login } from './../../shareds/interfaces/login';
-import { UtilityService } from './../../shareds/utility/utility.service';
+import { Login } from './../../shared/interfaces/login';
+import { UtilityService } from './../../shared/utility/utility.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shareds/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private utService: UtilityService
   ) {
     this.formLogin = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.email],
       password: ['', Validators.required],
     });
   }

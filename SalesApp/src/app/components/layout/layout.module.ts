@@ -9,7 +9,8 @@ import { SaleComponent } from './pages/sale/sale.component';
 import { SaleHistoryComponent } from './pages/sale-history/sale-history.component';
 import { ReportComponent } from './pages/report/report.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { SharedModule } from 'src/app/shareds/shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared/shared.module';
+import { UserDialogComponent } from './dialogs/user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from 'src/app/shareds/shared/shared.module';
     SaleComponent,
     SaleHistoryComponent,
     ReportComponent,
+    UserDialogComponent,
   ],
   imports: [CommonModule, LayoutRoutingModule, SharedModule],
 })
