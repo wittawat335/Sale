@@ -22,7 +22,7 @@ export class UserComponent implements OnInit, AfterViewInit {
     'Actions',
   ];
   dataSource = new MatTableDataSource<User>();
-  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private dialog: MatDialog,
@@ -33,7 +33,6 @@ export class UserComponent implements OnInit, AfterViewInit {
   GetTableUserList() {
     this.userService.GetList().subscribe({
       next: (data) => {
-        console.log(data);
         if (data.status) {
           this.dataSource = new MatTableDataSource(data.value);
           this.dataSource.paginator = this.paginator;

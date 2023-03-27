@@ -11,6 +11,7 @@ import { ReportComponent } from './pages/report/report.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { UserDialogComponent } from './dialogs/user-dialog/user-dialog.component';
+import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserDialogComponent } from './dialogs/user-dialog/user-dialog.component
     SaleHistoryComponent,
     ReportComponent,
     UserDialogComponent,
+    ProductDialogComponent,
   ],
   imports: [CommonModule, LayoutRoutingModule, SharedModule],
 })
