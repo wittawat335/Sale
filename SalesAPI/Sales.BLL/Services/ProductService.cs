@@ -67,11 +67,11 @@ namespace Sales.BLL.Services
                 if (dataUpdate == null)
                     throw new TaskCanceledException(Constants.StatusMessage.No_Data);
 
-                dataUpdate.Name = dataUpdate.Name;
-                dataUpdate.IdCategory = dataUpdate.IdCategory;
-                dataUpdate.Stock = dataUpdate.Stock;
-                dataUpdate.Price = dataUpdate.Price;
-                dataUpdate.IsActive = dataUpdate.IsActive;
+                dataUpdate.Name = mapper.Name;
+                dataUpdate.IdCategory = mapper.IdCategory;
+                dataUpdate.Stock = mapper.Stock;
+                dataUpdate.Price = mapper.Price;
+                dataUpdate.IsActive = mapper.IsActive;
 
                 bool updated = await _repository.Update(dataUpdate);
                 if (!updated)

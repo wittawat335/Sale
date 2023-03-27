@@ -68,7 +68,7 @@ namespace Sales.BLL.Services
                 {
                     throw new TaskCanceledException(Constants.StatusMessage.Could_Not_Create);
                 }
-                var query = await _repository.GetList(x => x.UserId == model.UserId);
+                var query = await _repository.GetList(x => x.UserId == createUser.UserId);
                 createUser = query.Include(x => x.IdRoleNavigation).First();
 
                 return _mapper.Map<UserDTO>(createUser);

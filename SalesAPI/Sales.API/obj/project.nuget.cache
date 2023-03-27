@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BI85/+i6OgSAOdMzz9FNMYaXCvz6oOK6gRfLIGYrEWnXOoUJGAU30YPNzagudYdYQZHhLZ7ZQMYkgSUS4SOKLw==",
+  "dgSpecHash": "SkoRl0eREM3P1DDSoBjQz6IHvaLfSNoYUmSPufCkMg5GDxBKKJVWfvx/EqKxTSbxENMLid5sYih18rTzS1VF5Q==",
   "success": true,
-  "projectFilePath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.API\\Sales.API.csproj",
+  "projectFilePath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.API\\Sales.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Wittawat\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Wittawat\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

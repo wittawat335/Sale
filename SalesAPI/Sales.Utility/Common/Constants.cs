@@ -30,6 +30,9 @@ namespace Sales.Utility.Common
             public const string No_Delete = "No Deleted";
             public const string Cannot_Update_Data = "Cannot Update Data";
             public const string Cannot_Map_Data = "Cannot Map Data";
+            public const string Create_Action = "Successfully Created";
+            public const string Update_Action = "Successfully Updated";
+            public const string Delete_Action = "Successfully Deleted";
         }
         public struct Status
         {

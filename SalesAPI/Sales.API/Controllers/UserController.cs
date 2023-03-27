@@ -65,6 +65,7 @@ namespace Sales.API.Controllers
             {
                 response.value = await _userService.Create(user);
                 response.status = Constants.Status.True;
+                response.message = Constants.StatusMessage.Create_Action;
             }
             catch (Exception ex)
             {
@@ -83,6 +84,7 @@ namespace Sales.API.Controllers
             {
                 response.value = await _userService.Update(user);
                 response.status = Constants.Status.True;
+                response.message = Constants.StatusMessage.Update_Action;
             }
             catch (Exception ex)
             {
@@ -100,6 +102,7 @@ namespace Sales.API.Controllers
             {
                 response.value = await _userService.Delete(id);
                 response.status = Constants.Status.True;
+                response.message = Constants.StatusMessage.Delete_Action;
             }
             catch (Exception ex)
             {

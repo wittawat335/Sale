@@ -3311,11 +3311,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.BLL\\Sales.BLL.csproj",
+      "projectUniqueName": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.BLL\\Sales.BLL.csproj",
       "projectName": "Sales.BLL",
-      "projectPath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.BLL\\Sales.BLL.csproj",
+      "projectPath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.BLL\\Sales.BLL.csproj",
       "packagesPath": "C:\\Users\\Wittawat\\.nuget\\packages\\",
-      "outputPath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.BLL\\obj\\",
+      "outputPath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3335,17 +3335,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.DAL\\Sales.DAL.csproj": {
-              "projectPath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.DAL\\Sales.DAL.csproj"
+            "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.DAL\\Sales.DAL.csproj": {
+              "projectPath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.DAL\\Sales.DAL.csproj"
             },
-            "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.DTO\\Sales.DTO.csproj": {
-              "projectPath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.DTO\\Sales.DTO.csproj"
+            "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.DTO\\Sales.DTO.csproj": {
+              "projectPath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.DTO\\Sales.DTO.csproj"
             },
-            "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.Model\\Sales.Model.csproj": {
-              "projectPath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.Model\\Sales.Model.csproj"
+            "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.Model\\Sales.Model.csproj": {
+              "projectPath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.Model\\Sales.Model.csproj"
             },
-            "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.Utility\\Sales.Utility.csproj": {
-              "projectPath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.Utility\\Sales.Utility.csproj"
+            "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.Utility\\Sales.Utility.csproj": {
+              "projectPath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.Utility\\Sales.Utility.csproj"
             }
           }
         }

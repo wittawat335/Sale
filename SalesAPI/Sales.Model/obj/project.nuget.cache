@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rsOaHOwvhDp+kS58UaLQBAdBlBZth7S0aqoygd1mmsQ9+iyfyoBSfJMDxFjQYsMwGIaco8tQ+y6nVvK66sUEVg==",
+  "dgSpecHash": "pvmAQ3/pizBFOurKoZPYRo8IwsfmRl8gPPVGJhQRiEOUCIIswWx26fH7tpttBfnpX+XlTo/AvET8UY0KJ/yKZw==",
   "success": true,
-  "projectFilePath": "F:\\Project 2023\\Angular\\Sales\\SalesAPI\\Sales.Model\\Sales.Model.csproj",
+  "projectFilePath": "F:\\Project 2023\\Angular\\SaleApp\\SalesAPI\\Sales.Model\\Sales.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Wittawat\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Wittawat\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
