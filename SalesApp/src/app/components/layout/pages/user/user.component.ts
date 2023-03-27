@@ -75,7 +75,9 @@ export class UserComponent implements OnInit, AfterViewInit {
       })
       .afterClosed()
       .subscribe((result) => {
-        if (result === 'true') this.GetTableList();
+        if (result === 'true') {
+          this.GetTableList();
+        }
       });
   }
 
