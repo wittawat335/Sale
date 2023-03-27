@@ -30,12 +30,11 @@ export class UserComponent implements OnInit, AfterViewInit {
     private utService: UtilityService
   ) {}
 
-  GetTableUserList() {
+  GetTableList() {
     this.userService.GetList().subscribe({
       next: (data) => {
         if (data.status) {
-          this.dataSource = new MatTableDataSource(data.value);
-          this.dataSource.paginator = this.paginator;
+          this.dataSource.data = data.value;
         } else {
           this.utService.showAlert(data.message, 'Oops!');
         }
@@ -44,7 +43,7 @@ export class UserComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(): void {
-    this.GetTableUserList();
+    this.GetTableList();
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -63,7 +62,7 @@ export class UserComponent implements OnInit, AfterViewInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === 'true') {
-          this.GetTableUserList();
+          this.GetTableList();
         }
       });
   }
@@ -76,7 +75,7 @@ export class UserComponent implements OnInit, AfterViewInit {
       })
       .afterClosed()
       .subscribe((result) => {
-        if (result === 'true') this.GetTableUserList();
+        if (result === 'true') this.GetTableList();
       });
   }
 
@@ -96,7 +95,7 @@ export class UserComponent implements OnInit, AfterViewInit {
           next: (data) => {
             if (data.status) {
               this.utService.showAlert(data.message, 'success');
-              this.GetTableUserList();
+              this.GetTableList();
             } else {
               this.utService.showAlert(data.message, 'Error');
             }
