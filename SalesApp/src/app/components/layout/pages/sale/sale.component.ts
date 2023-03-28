@@ -1,103 +1,150 @@
-import {
-  Component,
-  OnChanges,
-  ViewChild,
-  OnInit,
-  AfterViewInit,
-} from '@angular/core';
+import { Sale } from './../../../../shared/interfaces/sale';
+import { UtilityService } from './../../../../shared/utility/utility.service';
+import { SaleService } from './../../../../shared/services/sale.service';
+import { ProductService } from './../../../../shared/services/product.service';
+import { Product } from './../../../../shared/interfaces/product';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+import Swal from 'sweetalert2';
+import { SalesDetail } from 'src/app/shared/interfaces/sales-detail';
 
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
   styleUrls: ['./sale.component.css'],
 })
-export class SaleComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+export class SaleComponent implements OnInit {
+  listProduct: Product[] = [];
+  listProductFilter: Product[] = [];
+
+  listProductForSale: SalesDetail[] = [];
+  disableRegisterButton: boolean = false;
+
+  productSelected!: Product;
+  defaultPaymentType: string = 'cash';
+  totalPay: number = 0;
+
+  formProductSale: FormGroup;
+  displayedColumns: string[] = [
+    'product',
+    'quantity',
+    'price',
+    'total',
+    'action',
+  ];
+  dataSource = new MatTableDataSource(this.listProductForSale);
+
+  returnProductsByFilter(search: any): Product[] {
+    const value =
+      typeof search === 'string'
+        ? search.toLocaleLowerCase()
+        : search.name.toLocaleLowerCase();
+
+    return this.listProduct.filter((item) =>
+      item.name.toLocaleLowerCase().includes(value)
+    );
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private saleService: SaleService,
+    private utService: UtilityService
+  ) {
+    this.formProductSale = this.fb.group({
+      product: ['', Validators.required],
+      quantity: ['', Validators.required],
+    });
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.productService.GetList().subscribe({
+      next: (data) => {
+        if (data.status) {
+          const list = data.value as Product[];
+          this.listProduct = list.filter((p) => p.isActive == 1 && p.stock > 0);
+        }
+      },
+      error: (e) => {},
+    });
+
+    this.formProductSale.get('product')?.valueChanges.subscribe((value) => {
+      this.listProductFilter = this.returnProductsByFilter(value);
+    });
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit(): void {}
+
+  getProductName(product: Product): string {
+    return product.name;
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  productForSale(event: any) {
+    this.productSelected = event.option.value;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  addProductForSale() {
+    const quantity: number = this.formProductSale.value.quantity;
+    const price: number = parseFloat(this.productSelected.price);
+    const total: number = quantity * price;
+    this.totalPay = this.totalPay + total;
+    this.listProductForSale.push({
+      idProduct: this.productSelected.productId,
+      productName: this.productSelected.name,
+      quantity: quantity,
+      priceText: String(price.toFixed(2)),
+      totalText: String(total.toFixed(2)),
+    });
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.dataSource = new MatTableDataSource(this.listProductForSale);
+
+    this.formProductSale.patchValue({
+      product: '',
+      quantity: '',
+    });
+  }
+
+  deleteProduct(detail: SalesDetail) {
+    (this.totalPay = this.totalPay - parseFloat(detail.totalText)),
+      (this.listProductForSale = this.listProductForSale.filter(
+        (p) => p.idProduct != detail.idProduct
+      ));
+
+    this.dataSource = new MatTableDataSource(this.listProductForSale);
+  }
+
+  registerSale() {
+    if (this.listProductForSale.length > 0) {
+      this.disableRegisterButton = true;
+
+      const request: Sale = {
+        paymentType: this.defaultPaymentType,
+        totalText: String(this.totalPay.toFixed(2)),
+        saleDetails: this.listProductForSale,
+      };
+
+      this.saleService.Register(request).subscribe({
+        next: (data) => {
+          if (data.status) {
+            this.totalPay = 0.0;
+            this.listProductForSale = [];
+            this.dataSource = new MatTableDataSource(this.listProductForSale);
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Sale Register!',
+              text: `Sale number: ${data.value.documentNumber}`,
+            });
+          } else {
+            this.utService.showAlert('rrrrr', 'Oops');
+          }
+        },
+        complete: () => {
+          this.disableRegisterButton = false;
+        },
+        error: (e) => {},
+      });
     }
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
 }

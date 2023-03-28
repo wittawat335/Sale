@@ -4,6 +4,6 @@ export interface Product {
   idCategory: number;
   categoryName?: string;
   stock: number;
-  price: number;
+  price: string;
   isActive: number;
 }
