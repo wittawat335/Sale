@@ -1,12 +1,15 @@
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+
 import { UserDialogComponent } from './../../dialogs/user-dialog/user-dialog.component';
 import { UtilityService } from './../../../../shared/utility/utility.service';
 import { UserService } from './../../../../shared/services/user.service';
 import { User } from './../../../../shared/interfaces/user';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+
 import Swal from 'sweetalert2';
-import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user',

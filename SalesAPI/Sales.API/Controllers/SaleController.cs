@@ -22,7 +22,7 @@ namespace Sales.API.Controllers
 
         [HttpGet]
         [Route("Record")]
-        public async Task<IActionResult> record(string search, string saleNumber, string startDate, string endDate)
+        public async Task<IActionResult> record(string search, string? saleNumber, string? startDate, string? endDate)
         {
             var response = new Response<List<SaleDTO>>();
             saleNumber = saleNumber is null ? "" : saleNumber;

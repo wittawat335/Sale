@@ -47,6 +47,10 @@ export class UserDialogComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.pushData();
+  }
+
+  pushData() {
     if (this.dataUser != null) {
       this.formUser.patchValue({
         fullName: this.dataUser.fullName,

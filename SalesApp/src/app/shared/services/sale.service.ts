@@ -25,7 +25,7 @@ export class SaleService {
     endDate: string
   ): Observable<ResponseApi> {
     return this.http.get<ResponseApi>(
-      this.urlApi + '/Record/' + search + saleNumber + startDate + endDate
+      `${this.urlApi}/Record?search=${search}&saleNumber=${saleNumber}&startDate=${startDate}&endDate=${endDate}`
     );
   }
 
