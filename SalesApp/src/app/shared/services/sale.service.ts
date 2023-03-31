@@ -31,7 +31,7 @@ export class SaleService {
 
   Report(startDate: string, endDate: string): Observable<ResponseApi> {
     return this.http.get<ResponseApi>(
-      this.urlApi + '/Report/' + startDate + endDate
+      `${this.urlApi}/Report?startDate=${startDate}&endDate=${endDate}`
     );
   }
 }
