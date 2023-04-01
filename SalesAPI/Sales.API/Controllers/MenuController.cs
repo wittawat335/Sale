@@ -20,7 +20,7 @@ namespace Sales.API.Controllers
             _menuService = menuService;
         }
 
-        [HttpGet]
+        [HttpGet("{userId}")]
         public async Task<IActionResult> GetList(int userId)
         {
             var response = new Response<List<MenuDTO>>();

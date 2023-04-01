@@ -4,6 +4,12 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+
+    <span style="flex: 1 1 auto;"></span>
+    <label style="font-size: 14px; margin-right: 20px;" *ngIf="userName">{{userName}} | {{roleUser}}</label>
+    <button mat-icon-button (click)="logOut()" *ngIf="userName">
+      <mat-icon>logout</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -11,34 +17,9 @@
   <mat-sidenav #sidenav mode="side" opened="true" [class.mat-elevation-z4]="true" class="app-sidenav">
     <mat-nav-list>
 
-      <mat-list-item routerLink="/pages/dashboard">
-        <mat-icon>dashboard</mat-icon>
-        <span style="padding: 20px;">DashBoard</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="/pages/user">
-        <mat-icon>group</mat-icon>
-        <span style="padding: 20px;">User</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="/pages/product">
-        <mat-icon>collections_bookmark</mat-icon>
-        <span style="padding: 20px;">Product</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="/pages/sale">
-        <mat-icon>currency_exchange</mat-icon>
-        <span style="padding: 20px;">Sale</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="/pages/saleHistory">
-        <mat-icon>edit_note</mat-icon>
-        <span style="padding: 20px;">SaleHistory</span>
-      </mat-list-item>
-
-      <mat-list-item routerLink="/pages/report">
-        <mat-icon>receipt</mat-icon>
-        <span style="padding: 20px;">Report</span>
+      <mat-list-item *ngFor="let menu of listMenus" [routerLink]="menu.url">
+        <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+        <span style="padding: 20px;">{{menu.name}}</span>
       </mat-list-item>
 
     </mat-nav-list>

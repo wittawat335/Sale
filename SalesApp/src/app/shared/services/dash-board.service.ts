@@ -14,6 +14,6 @@ export class DashBoardService {
   constructor(private http: HttpClient) {}
 
   Summary(): Observable<ResponseApi> {
-    return this.http.get<ResponseApi>(this.urlApi + 'Summary');
+    return this.http.get<ResponseApi>(this.urlApi + '/Summary');
   }
 }

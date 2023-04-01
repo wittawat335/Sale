@@ -42,14 +42,14 @@ export class LoginComponent implements OnInit {
           this.utService.setSessionUser(data.value);
           this.router.navigate(['pages']);
         } else {
-          this.utService.showAlert(data.message, 'Opps!');
+          this.utService.showAlert(data.message, 'Oops!');
         }
       },
       complete: () => {
         this.showLoading = false;
       },
       error: () => {
-        this.utService.showAlert('Error', 'Opps!');
+        this.utService.showAlert('Error', 'Oops!');
       },
     });
   }

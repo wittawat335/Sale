@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   constructor(private service: DashBoardService) {}
 
   showGraph(label: any[], data: any[]) {
-    const chart = new Chart('chart', {
+    const chart = new Chart('myChart', {
       type: 'bar',
       data: {
         labels: label,
@@ -48,14 +48,14 @@ export class DashboardComponent implements OnInit {
       next: (data) => {
         if (data.status) {
           this.totalIncome = data.value.totalIncome;
-          this.totalSale = data.value.totalSale;
+          this.totalSale = data.value.salesTotal;
           this.totalProduct = data.value.totalProduct;
 
           const arrayData: any[] = data.value.listSalesWeek;
-          console.log(arrayData);
+          console.log(this.totalSale);
 
-          const labelTemp = arrayData.map((value) => value.Date);
-          const dataTemp = arrayData.map((value) => value.Total);
+          const labelTemp = arrayData.map((value) => value.date);
+          const dataTemp = arrayData.map((value) => value.total);
           console.log(labelTemp, dataTemp);
           this.showGraph(labelTemp, dataTemp);
         }
