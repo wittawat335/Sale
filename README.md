@@ -5,5 +5,5 @@
 - Moment -----npm i moment@2.29.4 --save
 -              ------------npm i @angular/material-moment-adapter@14.2.7
 - Chart.js 
-----------npm i chart.js@3.9.1
--- xlsx --npm i xlsx@0.18.5
+--npm i chart.js@3.9.1
+-xlsx --npm i xlsx@0.18.5
